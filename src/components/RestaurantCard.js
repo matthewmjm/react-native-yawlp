@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet, Button, TouchableOpacity } from 'react-native';
+import { View, Text, Image, StyleSheet, Button, TouchableOpacity, Linking } from 'react-native';
 
 export default function RestaurantCard({restaurant, index}) {
     return(
@@ -17,7 +17,11 @@ export default function RestaurantCard({restaurant, index}) {
                         return <Text key={category.id}>{category.title}, </Text>
                     })}
                 </View>
-                <TouchableOpacity title="Visit Website" style={styles.visitWebsiteButton}>
+                <TouchableOpacity 
+                    title="Visit Website" 
+                    style={styles.visitWebsiteButton}
+                    onPress={() => Linking.openURL(restaurant.url)}
+                >
                     <Text style={styles.buttonText}>Visit Website</Text>
                 </TouchableOpacity>
             </View>
