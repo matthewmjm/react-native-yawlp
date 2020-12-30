@@ -13,6 +13,8 @@ const apiUrl = "https://api.yelp.com/v3/businesses/search?term=restaurant&locati
 export default function App() {
   const store = createStore(reducers)
 
+  console.log(store.getState())
+
   useEffect(() => {
     fetch(`${apiUrl}`, {
       headers: {

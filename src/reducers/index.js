@@ -1,10 +1,15 @@
+import { combineReducers } from 'redux';
 
+const restaurants = (state=[], action) => {
+    switch(action.type) {
+        case "SET_RESTAURANTS":
+            // return action.payload
+            return action.restaurants
+        default:
+            return state
+    }
+}
 
-// export function reducers (state, action) {
-//     switch(action.type) {
-//         default:
-//             return state
-//     }
-// }
-
-export default () => {}
+export default combineReducers({
+    restaurants: restaurants
+})
