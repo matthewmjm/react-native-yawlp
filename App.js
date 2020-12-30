@@ -1,7 +1,7 @@
 import React from 'react';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView } from 'react-native';
 import { LogBox } from 'react-native';
 import reducers from './src/reducers/index';
 import RestaurantsContainer from './src/components/RestaurantsContainer';
@@ -17,9 +17,9 @@ export default function App() {
 
   return (
     <Provider store={store}>
-      <View style={styles.container} >
+      <SafeAreaView style={styles.container} >
         <RestaurantsContainer />
-      </View>
+      </SafeAreaView>
     </Provider>
   );
 }
@@ -28,8 +28,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
 });
 
