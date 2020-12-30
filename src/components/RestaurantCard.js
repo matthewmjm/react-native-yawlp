@@ -13,8 +13,8 @@ export default function RestaurantCard({restaurant, index}) {
                 <Text style={styles.rating}>Rating: {restaurant.rating}</Text>
                 <Text style={styles.address}>Address: {restaurant.location.address1}</Text>
                 <View style={styles.rowViewCategories} >
-                    {restaurant.categories.map(category => {
-                        <Text>{category.title}, </Text>
+                    {restaurant.categories.map((category, index) => {
+                        <Text key={index}>{category.title}, </Text>
                     })}
                 </View>
                 <TouchableOpacity 
