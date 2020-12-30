@@ -1,35 +1,24 @@
-import { StatusBar } from 'expo-status-bar';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import reducers from './src/reducers/index';
 import { StyleSheet, Text, View } from 'react-native';
 import { LogBox } from 'react-native';
-
-const apiKey = 
-
-const apiUrl = "https://api.yelp.com/v3/businesses/search?term=restaurant&location=Saint Louis";
+import reducers from './src/reducers/index';
+import RestaurantsContainer from './src/components/RestaurantsContainer';
 
 export default function App() {
   const store = createStore(reducers)
 
-  console.log(store.getState())
+  // this hook won't work because it is outside the Provider
+  // const dispatch = useDispatch();
 
-  useEffect(() => {
-    fetch(`${apiUrl}`, {
-      headers: {
-        "Authorization": `Bearer ${apiKey}`
-      }
-    })
-    .then(response => response.json())
-    .then(console.log)
-  }, []);
+// to see what is currently in State
+  console.log(store.getState())
 
   return (
     <Provider store={store}>
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-        <StatusBar style="auto" />
+      <View style={styles.container} >
+        <RestaurantsContainer />
       </View>
     </Provider>
   );
