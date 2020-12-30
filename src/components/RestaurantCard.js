@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet, Button, TouchableOpacity, Linking } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity, Linking } from 'react-native';
 
 export default function RestaurantCard({restaurant, index}) {
     return(
@@ -14,7 +14,7 @@ export default function RestaurantCard({restaurant, index}) {
                 <Text style={styles.address}>Address: {restaurant.location.address1}</Text>
                 <View style={styles.rowViewCategories} >
                     {restaurant.categories.map(category => {
-                        return <Text key={category.id}>{category.title}, </Text>
+                        <Text>{category.title}, </Text>
                     })}
                 </View>
                 <TouchableOpacity 
