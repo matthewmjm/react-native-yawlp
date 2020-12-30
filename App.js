@@ -1,13 +1,27 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import reducers from './reducers/index';
+import reducers from './src/reducers/index';
 import { StyleSheet, Text, View } from 'react-native';
+import { LogBox } from 'react-native';
+
+const apiKey = 
+
+const apiUrl = "https://api.yelp.com/v3/businesses/search?term=restaurant&location=Saint Louis";
 
 export default function App() {
-  
-  const store = createStore({})
+  const store = createStore(reducers)
+
+  useEffect(() => {
+    fetch(`${apiUrl}`, {
+      headers: {
+        "Authorization": `Bearer ${apiKey}`
+      }
+    })
+    .then(response => response.json())
+    .then(console.log)
+  }, []);
 
   return (
     <Provider store={store}>
@@ -27,3 +41,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+LogBox.ignoreLogs(['Remote debugger']);
