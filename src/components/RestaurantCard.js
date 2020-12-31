@@ -19,24 +19,23 @@ export default function RestaurantCard({restaurant, index}) {
                     <Text style={styles.name}>{index}. {restaurant.name}</Text>
                     <Text style={styles.price}>{restaurant.price}</Text>
                 </View>
-                    <View style={styles.detailsContainer}>
-                        <View style={styles.detailColumn}>
-                            <Text style={styles.rating}>Rating: {restaurant.rating}</Text>
-                            <Text style={styles.address}>Address: {restaurant.location.address1}</Text>
-                            <View style={[styles.rowView, {justifyContent: "flex-start"}]}>
-                                {restaurant.categories.map((category, index) => (
-                                    <Text key={index}>{category.title}, </Text>
-                                ))}
-                            </View>
-                        </View>
+                    <View style={styles.rowView}>
+                        <Text style={styles.rating}>Rating: {restaurant.rating}</Text>
                         <TouchableOpacity onPress={() => handleFavorite()}>
                             <Ionicons 
-                                style={styles.detailColumn} 
                                 name='heart' 
                                 color='red' 
                                 size={20} 
                             />
                         </TouchableOpacity>
+                    </View>
+                    <View>
+                        <Text style={styles.address}>{restaurant.location.address1}, {restaurant.location.city}, {restaurant.location.state} {restaurant.location.zip_code}</Text>
+                        <View style={[styles.rowView, {justifyContent: "flex-start"}]}>
+                            {restaurant.categories.map((category, index) => (
+                                <Text key={index}>{category.title}, </Text>
+                            ))}
+                        </View>
                     </View>
                 <TouchableOpacity 
                     title="Visit Website" 
@@ -76,9 +75,6 @@ const styles=StyleSheet.create({
     price: {
         color: 'darkgreen',
         paddingRight: 5,
-    },
-    detailsContainer: {
-        flexDirection: 'row',
     },
     detailColumn: {
 

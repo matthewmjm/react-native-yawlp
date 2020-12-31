@@ -13,7 +13,7 @@ export default function RestaurantsContainer() {
     const restaurants = useSelector(state => state.restaurants)
     const favorites = useSelector(state => state.favorites)
     console.log(favorites, 'favorites')
-
+    
     const [searchTerm, setSearchTerm] = useState('')
     useEffect(() => {
         fetch(`${apiUrl}`, {
