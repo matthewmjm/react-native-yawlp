@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { ScrollView, StyleSheet, TextInput, Button, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import RestaurantCard from './RestaurantCard';
-
-const apiKey = 
+import {YAWLP_API_KEY} from "@env";
 
 const apiUrl = "https://api.yelp.com/v3/businesses/search?term=restaurant&location=Saint Louis";
 
@@ -18,7 +17,7 @@ export default function RestaurantsContainer() {
     useEffect(() => {
         fetch(`${apiUrl}`, {
             headers: {
-                "Authorization": `Bearer ${apiKey}`
+                "Authorization": `Bearer ${YAWLP_API_KEY}`
             }
         })
         .then(response => response.json())
@@ -44,7 +43,7 @@ export default function RestaurantsContainer() {
 
         fetch(`${updatedUrl}`, {
             headers: {
-                "Authorization": `Bearer ${apiKey}`
+                "Authorization": `Bearer ${YAWLP_API_KEY}`
             }
         })
         .then(response => response.json())

@@ -25,7 +25,9 @@
     "redux": "^4.0.5"
   },
   "devDependencies": {
-    "@babel/core": "~7.9.0"
+    "@babel/core": "~7.9.0",
+    "babel-plugin-dotenv-import": "^2.1.0",
+    "react-native-dotenv": "^2.4.3"
   },
   "private": true
 }
