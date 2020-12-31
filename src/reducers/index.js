@@ -12,7 +12,9 @@ const restaurants = (state=[], action) => {
 const favorites = (state=[], action) => {
     switch(action.type) {
         case "ADD_FAVORITE":
-            return [...state, action.payload]
+            if (!state.find(restaurant => restaurant.id === action.payload.id)) {
+                return [...state, action.payload]
+            }
         default:
             return state
     }
