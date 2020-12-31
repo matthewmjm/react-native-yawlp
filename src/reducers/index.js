@@ -9,6 +9,16 @@ const restaurants = (state=[], action) => {
     }
 }
 
+const favorites = (state=[], action) => {
+    switch(action.type) {
+        case "ADD_FAVORITE":
+            return [...state, action.payload]
+        default:
+            return state
+    }
+}
+
 export default combineReducers({
-    restaurants: restaurants
+    restaurants: restaurants,
+    favorites: favorites
 })

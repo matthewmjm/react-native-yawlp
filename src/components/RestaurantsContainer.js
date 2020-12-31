@@ -11,6 +11,9 @@ const apiUrl = "https://api.yelp.com/v3/businesses/search?term=restaurant&locati
 export default function RestaurantsContainer() {
     const dispatch = useDispatch();
     const restaurants = useSelector(state => state.restaurants)
+    const favorites = useSelector(state => state.favorites)
+    console.log(favorites, 'favorites')
+
     const [searchTerm, setSearchTerm] = useState('')
     useEffect(() => {
         fetch(`${apiUrl}`, {

@@ -1,8 +1,17 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Ionicons } from '@expo/vector-icons';
 import { View, Text, Image, StyleSheet, TouchableOpacity, Linking } from 'react-native';
 
 export default function RestaurantCard({restaurant, index}) {
-    return(
+
+    const dispatch = useDispatch()
+
+    const handleFavorite = () => {
+        dispatch({ type: "ADD_FAVORITE", payload: restaurant})
+    }
+
+    return (
         <View style={styles.container}>
             <Image style={styles.cardImage} source={{uri: restaurant.image_url}} />
             <View style={styles.infoContainer}>
@@ -10,13 +19,25 @@ export default function RestaurantCard({restaurant, index}) {
                     <Text style={styles.name}>{index}. {restaurant.name}</Text>
                     <Text style={styles.price}>{restaurant.price}</Text>
                 </View>
-                <Text style={styles.rating}>Rating: {restaurant.rating}</Text>
-                <Text style={styles.address}>Address: {restaurant.location.address1}</Text>
-                <View style={styles.rowViewCategories} >
-                    {restaurant.categories.map((category, index) => {
-                        <Text key={index}>{category.title}, </Text>
-                    })}
-                </View>
+                    <View style={styles.detailsContainer}>
+                        <View style={styles.detailColumn}>
+                            <Text style={styles.rating}>Rating: {restaurant.rating}</Text>
+                            <Text style={styles.address}>Address: {restaurant.location.address1}</Text>
+                            <View style={[styles.rowView, {justifyContent: "flex-start"}]}>
+                                {restaurant.categories.map((category, index) => (
+                                    <Text key={index}>{category.title}, </Text>
+                                ))}
+                            </View>
+                        </View>
+                        <TouchableOpacity onPress={() => handleFavorite()}>
+                            <Ionicons 
+                                style={styles.detailColumn} 
+                                name='heart' 
+                                color='red' 
+                                size={20} 
+                            />
+                        </TouchableOpacity>
+                    </View>
                 <TouchableOpacity 
                     title="Visit Website" 
                     style={styles.visitWebsiteButton}
@@ -55,6 +76,12 @@ const styles=StyleSheet.create({
     price: {
         color: 'darkgreen',
         paddingRight: 5,
+    },
+    detailsContainer: {
+        flexDirection: 'row',
+    },
+    detailColumn: {
+
     },
     rating: {
         marginVertical: 5,

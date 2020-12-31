@@ -48,7 +48,7 @@ const CustomHomeHeader = (props) => (
       style={styles.touchable}
       onPress={() => props.navigation.navigate("Favorites")}
     >
-      <Ionicons name='heart' color='red' size={24} />
+      <Ionicons name='heart' color='red' size={30} />
     </TouchableOpacity>
 )
 
