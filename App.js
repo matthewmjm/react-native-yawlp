@@ -1,10 +1,17 @@
 import React from 'react';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import { StyleSheet, Text, View, SafeAreaView, Platform, StatusBar } from 'react-native';
+import { StyleSheet, TouchableOpacity } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 import { LogBox } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 import reducers from './src/reducers/index';
-import RestaurantsContainer from './src/components/RestaurantsContainer';
+import HomeScreen from './src/screens/HomeScreen';
+import FavoritesScreen from './src/screens/FavoritesScreen';
+
+
+const Stack = createStackNavigator();
 
 export default function App() {
   const store = createStore(reducers)
@@ -17,19 +24,38 @@ export default function App() {
 
   return (
     <Provider store={store}>
-      <SafeAreaView style={styles.container} >
-        <RestaurantsContainer />
-      </SafeAreaView>
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen 
+            name="YAWLP...a Yelp knock-off" 
+            component={HomeScreen}
+            options={ ({navigation}) => ({
+              headerRight: () => <CustomHomeHeader navigation={navigation} />
+            })}
+          />
+          <Stack.Screen 
+            name="Favorites" 
+            component={FavoritesScreen}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
     </Provider>
   );
 }
 
+const CustomHomeHeader = (props) => (
+    <TouchableOpacity 
+      style={styles.touchable}
+      onPress={() => props.navigation.navigate("Favorites")}
+    >
+      <Ionicons name='heart' color='red' size={24} />
+    </TouchableOpacity>
+)
+
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    width: '100%',
-    paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
+  touchable: {
+    paddingRight: 15,
+
   },
 });
 

@@ -54,6 +54,7 @@ const styles=StyleSheet.create({
     },
     price: {
         color: 'darkgreen',
+        paddingRight: 5,
     },
     rating: {
         marginVertical: 5,
